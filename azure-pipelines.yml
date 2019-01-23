@@ -1,17 +1,11 @@
+resources:
+  containers:
+  - container: dev1
+    image: ubuntu:16.04
 jobs:
-- job: string
-  timeoutInMinutes: 2
-  cancelTimeoutInMinutes: 3
-  strategy:
-    maxParallel: 3
-    # note: `parallel` and `matrix` are mutually exclusive
-    # you may specify one or the other; including both is an error
-    matrix: { string: { string: string } }
+- job: job_container
   pool:
-    name: string
-    demands: string | [ string ]
-
-  container: string
-
+    name: default
+  container: dev1
   steps:
-    - script: echo Hello world
+  - script: printenv
