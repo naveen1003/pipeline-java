@@ -1,18 +1,10 @@
 jobs:
-- job: A
-  steps:
-  - script: exit 1
+- job: Foo
 
-- job: B
-  dependsOn: A
-  condition: true
   steps:
-  - script: echo this will run when A fails
+  - script: echo Hello!
+    condition: true # this step will always run, even if the pipeline is cancelled
 
-- job: C
-  dependsOn:
-  - A
-  - B
-  condition: false
-  steps:
-  - script: echo this will run when B runs and succeeds
+- job: Bar
+  dependsOn: Foo
+  condition: false # this job will only run if Foo fails
