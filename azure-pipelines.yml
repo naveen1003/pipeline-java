@@ -3,8 +3,8 @@ jobs:
 
   steps:
   - script: echo Hello!
-    condition: true # this step will always run, even if the pipeline is cancelled
+    condition: false # this step will always run, even if the pipeline is cancelled
 
 - job: Bar
   dependsOn: Foo
-  condition: false # this job will only run if Foo fails
+  condition: true # this job will only run if Foo fails
